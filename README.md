@@ -5,9 +5,10 @@ A simple todo list blockchain application with solidity and jquery
 
 # Requirements
 
-1. A local blockchain server running
+1. [Node.js](https://nodejs.org/en/download/) installed 
+2. A local blockchain server running
     - Recommendation: [Ganache](https://trufflesuite.com/ganache/)
-2. A crypto wallet setup
+3. A crypto wallet setup
     - Recommendation: [Metamask](https://metamask.io/)
 
 
