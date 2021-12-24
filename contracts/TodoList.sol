@@ -17,7 +17,7 @@ contract TodoList {
         bool completed
     );
 
-    constructor() public {
+    constructor() {
         createTask("Check out pacheco.io");
     }
 
@@ -25,5 +25,9 @@ contract TodoList {
         taskCount ++;
         tasks[taskCount] = Task(taskCount, _content, false);
         emit TaskCreated(taskCount, _content, false);
+    }
+
+    function changeCompleted(uint _id) public {
+        tasks[_id].completed = !tasks[_id].completed;
     }
 }

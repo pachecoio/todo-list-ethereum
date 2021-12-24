@@ -7,8 +7,8 @@ App = {
     await App.render();
   },
   loadAccount: async () => {
-    console.log('Loading Account', web3.eth.accounts.currentProvider.selectedAddress)
-    App.account = web3.eth.accounts.currentProvider.selectedAddress;
+    const accounts = await web3.eth.getAccounts();
+    App.account = accounts[0];
   },
   loadContract: async () => {
     const todoList = await $.getJSON('TodoList.json')
@@ -57,7 +57,7 @@ App = {
 
       $newTaskTemplate.find('.content').html(content)
       $newTaskTemplate.find('input')
-        .prop('name', 'id')
+        .prop('name', id)
         .prop('checked', completed)
         .on('click', App.toggleCompleted)
 
@@ -70,8 +70,19 @@ App = {
       $newTaskTemplate.show();
     }
   },
-  toggleCompleted: (e) => {
-    console.log('set completed task')
+  toggleCompleted: async (e) => {
+    App.setLoading(true);
+    const taskId = e.target.name;
+    console.log('change completed', taskId)
+    await App.todoList.changeCompleted(taskId, {from: App.account})
+    App.setLoading(false)
+  },
+  createTask: async () => {
+    App.setLoading(true);
+    const content = $('#newTask').val();
+    console.log('Create new task with content: ', content)
+    await App.todoList.createTask(content, {from: App.account});
+    window.location.reload();
   },
   // https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8
   loadWeb3: async () => {
