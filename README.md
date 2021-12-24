@@ -47,7 +47,7 @@ Upon each change in the contracts, it is necessary to rerun the migrations
 npm run migrate
 ```
 
-Reseting the dev environment requires reseting the migrations:
+Restarting the local blockchain might wipe the data and it would be necessary to `run` and `reset` the migrations:
 ```sh
 npm run migrate --reset
 ```
