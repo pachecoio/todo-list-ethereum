@@ -1,4 +1,4 @@
-# todo-list-etherium
+# todo-list-ethereum
 
 A simple todo list blockchain application with solidity and jquery
 
